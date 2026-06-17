@@ -70,7 +70,7 @@ def gen_current(t):
     i0 = np.ones(len(t_0))
     i0 [0] = 0
     i0[1] = np.random.uniform(0.3,.7)
-    i0[2:] = np.random.uniform(sig * 2,1 - 2 * sig,size=5)
+    i0[2:] = np.random.uniform(sig * 2,-0.5 * sig,size=5)
 
     
     mu, cov, gp_model = GP_process(alpha, t_0.reshape(-1,1), i0.reshape(-1,1), t.reshape(-1,1))
