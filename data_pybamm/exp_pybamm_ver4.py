@@ -149,15 +149,3 @@ def get_values(param,model=None, RNG = False):
     return t_, t_eval, I(t_), vals(t_)
 
 
-
-
-# =========================
-# 4) Main: run & visualize
-# =========================
-# def main():
-#     t, t_eval, I, V = get_values()
-#     print(t.shape)
-
-
-# if __name__ == "__main__":
-#     main()

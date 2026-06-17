@@ -35,6 +35,7 @@ def simulate_CC(I0, T, T_horizon, get_Ue=False):
     # ---
 
     if get_Ue:
+        # OCV experimetn to get Ue(soc) curve
         V_min = 3.105   # From parameter list
         param['Lower voltage cut-off [V]'] = pybamm.Scalar(V_min)
         experiment = pybamm.Experiment([f"Discharge at C/30 until {V_min} V"])
@@ -76,7 +77,6 @@ def gen_current(t):
     sample = stats.multivariate_normal.rvs(mean=mu, cov=cov)
     sample = np.clip(sample, 0, 1)
     I_int = np.trapezoid(sample, t,dx=3.6)
-    #sample = sample * 3600 / I_int
 
     return sample
     
@@ -115,42 +115,3 @@ def simulate_GRF(T, T_horizon):
     solution = solver.solve(model, t_eval)
 
     return solution,model, param
-
-
-# def get_voltage(I):
-#     solution, model = simulate(I)
-#     npc = solution.observe(model.variables['Battery voltage [V]'])
-#     t_ = np.linspace(0,solution['Time [s]'].entries[-1],1000)
-#     return t_,npc(t_)
-
-
-# def get_volt_variable(I):
-#     solution, model = simulate_variable_current(I)
-#     V = solution.observe(model.variables['Battery voltage [V]'])
-#     It = solution.observe(model.variables['Current variable [A]'])
-#     t_ = np.linspace(0,solution['Time [s]'].entries[-1],1000)
-#     return t_,V(t_), It(t_)
-
-
-# def get_OC_voltage(I):
-#     solution, model = simulate(I)
-#     npc = solution.observe(model.variables['Battery open-circuit voltage [V]'])
-#     t_ = np.linspace(0,solution['Time [s]'].entries[-1],1000)
-#     return t_,npc(t_)
-
-
-# def get_discharge_capacity(I):
-#     solution, model = simulate(I)
-#     npc = solution.observe(model.variables['Discharge capacity [A.h]'])
-#     print(len(solution['Time [s]'].entries))
-#     t_ = np.linspace(0,solution['Time [s]'].entries[-1],1000)
-#     return t_,npc(t_)
-
-# def get_discharge_capacity_II(I):
-#     solution, model = simulate(I)
-#     npc = solution.observe(model.variables['Discharge capacity [A.h]'])
-#     t_ = np.linspace(0,solution['Time [s]'].entries[-1],1000)
-#     return t_,npc(t_), solution['Time [s]'].entries
-
-
-# s, m, p = simulate_DC1(0.5, 1000, 3600)
