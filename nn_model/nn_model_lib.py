@@ -23,8 +23,8 @@ COLORS = plot_settings.colors()
 # Ue(SOC) lookup — see Ue_GP.py for caching / tabulation details.
 # Tabulate the GP on a dense SOC grid once at startup, use np.interp for lookups. 
 # GP-quality values with interpolant speed.
-import _moving_box.nn_model.Ue_GP_comsol as Ue_GP_comsol
-import _moving_box.nn_model.Ue_GP_pybamm as Ue_GP_pybamm
+import nn_model.Ue_GP_comsol as Ue_GP_comsol
+import nn_model.Ue_GP_pybamm as Ue_GP_pybamm
 import fix_ecm
 
 Q0          = 17921.57581   # cell capacity [Coulombs]
@@ -581,8 +581,10 @@ class BatteryECMM(nn.Module):
         with torch.no_grad():
             if self.config.get('HF_model', 'comsol') == 'comsol':       # Fall back to 'comsol' if 'HF_model' is absent
                 Ue = Ue_GP_comsol.soc_to_Ue(soc, return_torch=True)
+                print('Using COMSOL OCV model for Ue')
             elif self.config.get('HF_model', 'comsol') == 'pybamm':
                 Ue = Ue_GP_pybamm.soc_to_Ue(soc, return_torch=True)
+                print('Using COMSOL OCV model for Ue')
 
         if V_mode == 'static':
             # Steady-state of the RC: U1 = I · R1.  C1 is *not* used.
