@@ -52,8 +52,10 @@ def _style_F(config):
 
 class R1Net(nn.Module):
     """(SOC, I, u) → R1 > 0  [Ohm].  One hidden layer, softplus output."""
-    def __init__(self, n_hidden=32):
+    def __init__(self, config, n_hidden=32):
         super().__init__()
+        hf = config.get('HF_model', 'comsol')
+        self.scale = 0.1 if hf == 'pybamm' else 0.01  # scale factor to get R1 in the right ballpark for the chosen HF_model
         self.net = nn.Sequential(
             nn.Linear(3, n_hidden),
             nn.Tanh(),
@@ -65,7 +67,7 @@ class R1Net(nn.Module):
     def forward(self, soc, I_norm, u):
         x = torch.stack([soc, I_norm, u], dim=-1)   # (..., 3)
         # scale output to typical R1 range (mOhm·m)
-        return nn.functional.softplus(self.net(x)).squeeze(-1) * 0.1 
+        return nn.functional.softplus(self.net(x)).squeeze(-1) * self.scale
                                                              # * 0.1 FOR PYBAMM 
                                                              # * 0.01 FOR COMSOL. if softplus = 1, out = 10 [mOhm * m]
 
@@ -418,7 +420,7 @@ class BatteryECMM(nn.Module):
             self.r1_net = R1NetConstrained(config, n_hidden=nh)
         else:
             print('R1 unconstrained')
-            self.r1_net = R1Net(n_hidden=nh)
+            self.r1_net = R1Net(config, n_hidden=nh)
 
         # ── C1 net — always network, optionally constrained ──
         if config.get('C1_constrained', 'false') == 'true':
@@ -584,7 +586,7 @@ class BatteryECMM(nn.Module):
                 print('Using COMSOL OCV model for Ue')
             elif self.config.get('HF_model', 'comsol') == 'pybamm':
                 Ue = Ue_GP_pybamm.soc_to_Ue(soc, return_torch=True)
-                print('Using COMSOL OCV model for Ue')
+                print('Using PyBaMM OCV model for Ue')
 
         if V_mode == 'static':
             # Steady-state of the RC: U1 = I · R1.  C1 is *not* used.
