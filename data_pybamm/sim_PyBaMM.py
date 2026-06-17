@@ -66,11 +66,11 @@ def gen_current(t):
     sig = 0.1
     l = 500
     alpha = [l, sig]
-    t_0 = np.arange(0,7) * 600
+    t_0 = np.arange(0,10) * np.max(t) / 10
     i0 = np.ones(len(t_0))
     i0 [0] = 0
     i0[1] = np.random.uniform(0.3,.7)
-    i0[2:] = np.random.uniform(sig * 2,-0.5 * sig,size=5)
+    i0[2:] = np.random.uniform(sig * 2,.5 * sig,size=len(t_0)-2)
 
     
     mu, cov, gp_model = GP_process(alpha, t_0.reshape(-1,1), i0.reshape(-1,1), t.reshape(-1,1))
