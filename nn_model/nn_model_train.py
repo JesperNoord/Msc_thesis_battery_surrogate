@@ -41,7 +41,7 @@ FIGS_DIR    = os.path.join(FILE_PATH, 'figs')
 MODEL_DIR   = os.path.join(FILE_PATH, 'saved_NN_models')
 
 SAVE_FIGS     = False
-SAVE_MODELS   = True 
+SAVE_MODELS   = False 
 
 TRAIN_SPLIT = 0.8
 N_HIDDEN    = 16
@@ -55,16 +55,17 @@ EVAL_EVERY  = 1      # epochs between test-set evals; raise for cheaper eval
 
 # Choose trajectories to train on. 
 # (Framework/constraints optimized for comsol data with force. Pybamm data is without force data, yet force is predicted)
-HF_MODEL    = 'pybamm'  # 'comsol' or 'pybamm' (both have same inputs and outputs)
-# Change softplus scaling when running pybamm
+HF_MODEL    = 'comsol'  # 'comsol' or 'pybamm' (both have same inputs and outputs)
 
 if HF_MODEL == 'comsol':
     Q0          = 17921.57581     # As
-    DATA_FILE   = os.path.join(DATA_DIR, 'polished_CC/merged_CC_hyper.txt')         # Full from hyperelastic material in Comsol
+    DATA_FILE   = os.path.join(DATA_DIR, 'polished_CC/merged_CC_hyper.txt')    
     PULSE_FILE  = os.path.join(DATA_DIR, 'polished_pulse/merged_pulse_hyper.txt')
     COMBO_FILE  = os.path.join(DATA_DIR, 'polished_combo/combo_half.txt')
     #COMBO_FILE  = os.path.join(DATA_DIR, 'polished_combo/combo_other_half.txt')
-elif HF_MODEL == 'pybamm':
+
+
+elif HF_MODEL == 'pybamm': # Only for CC data
     Q0          = 3600.0           # As, nominal capacity for 1 A.h cell, defined in sim_PyBaMM.py
     DATA_FILE   = os.path.join(PYBAMM_DATA_DIR, 'CC/pybamm_CC.txt')        
     # PULSE_FILE  = os.path.join(PYBAMM_DATA_DIR, 'pybamm_pulse.txt')
@@ -108,7 +109,7 @@ CONFIG = {
     'HF_model': HF_MODEL,  # 'comsol' or 'pybamm'
 }
 
-EPOCHS  = 2500  # Total training epochs
+EPOCHS  = 1  # Total training epochs
 split_percentage = 1 # Out of 100% of the training data, how much to use (for quick tests)
 
 

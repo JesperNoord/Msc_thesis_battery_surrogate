@@ -169,6 +169,7 @@ plot_mosaic_predicts_report_data(bat_model_full, config_full, other_combo_cc, so
 plot_mosaic_predicts_report_data(bat_model_full, config_full, cc_c25_usweep, sort='u_per', predict='V', n_show=3, bar=False, pulse=False, show_current=False, fixed=False, start=2)
 plt.show()
 
+
 ##### ––––– For report –––––
 # # ––––– Pulse force
 other_combo_pulse_d0 = prepare_pulse_data(other_combo_data[(other_combo_data['u_par']==0) & (other_combo_data['pulse'] == True)])
@@ -206,7 +207,6 @@ plt.show()
 
 # %% ––––––––––––– pulse dynamic o static ––––––––––––––
 
-## –––– Change colors in plotter ––––
 plot_mosaic_predicts_report(bat_model_dynamic_DC, config_dyna, other_combo_pulse, sort='C_rate', predict='V', 
                             n_show=1, start=39, pulse=True, fixed=False, bar=False)
 plt.show()

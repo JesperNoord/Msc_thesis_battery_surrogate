@@ -82,8 +82,8 @@ def gen_current(t):
     
 
 
-def current_profile(t):
-    times =    np.linspace(0, 3600, 1000)  
+def current_profile(t, T_horizon):
+    times =    np.linspace(0, T_horizon, 1000)  
     currents = gen_current(times)
     return pybamm.Interpolant(times, currents, pybamm.t)
 
@@ -98,8 +98,8 @@ def simulate_GRF(T, T_horizon):
     }
 )
     param = model.default_parameter_values
-    def my_current(t):
-        return current_profile(t)
+    def my_current(t, T_horizon=T_horizon):
+        return current_profile(t, T_horizon)
     param["Current function [A]"] = my_current
 
     param.process_model(model)

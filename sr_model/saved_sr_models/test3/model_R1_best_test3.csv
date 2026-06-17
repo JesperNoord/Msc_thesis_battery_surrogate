@@ -1,0 +1,7 @@
+8
+11
+20.400053
+square(cube(((C ^ soc) - exp(soc)) + 1.833453))
+0.11834593042871183
+(C**soc - exp(soc) + 1.833453)**6
+PySRFunction(X=>(C**soc - exp(soc) + 1.833453)**6)

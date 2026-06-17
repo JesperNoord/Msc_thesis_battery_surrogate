@@ -583,10 +583,8 @@ class BatteryECMM(nn.Module):
         with torch.no_grad():
             if self.config.get('HF_model', 'comsol') == 'comsol':       # Fall back to 'comsol' if 'HF_model' is absent
                 Ue = Ue_GP_comsol.soc_to_Ue(soc, return_torch=True)
-                print('Using COMSOL OCV model for Ue')
             elif self.config.get('HF_model', 'comsol') == 'pybamm':
                 Ue = Ue_GP_pybamm.soc_to_Ue(soc, return_torch=True)
-                print('Using PyBaMM OCV model for Ue')
 
         if V_mode == 'static':
             # Steady-state of the RC: U1 = I · R1.  C1 is *not* used.
@@ -1079,9 +1077,19 @@ def predict_np(model, config, traj, V_mode=None):
 
 
 
+
+
+
+
 '''
 Below here: plotting artifacts used in nn_model_train.py and nn_model_load.py. However, many are not used in either file.
 '''
+
+
+
+
+
+
 
 # ══════════════════════════════════════════════════════════
 #  PLOT PREDICTIONS  (one function for both CC and pulse)
