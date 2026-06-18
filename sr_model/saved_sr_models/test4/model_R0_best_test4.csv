@@ -1,0 +1,7 @@
+8
+15
+0.0030321216
+sqrt(square(cube(soc) * soc) + sqrt(exp((-0.43521732 * exp(d)) - C)))
+0.09958278163424118
+sqrt(soc**8 + sqrt(exp(-C - 0.43521732*exp(d))))
+PySRFunction(X=>sqrt(soc**8 + sqrt(exp(-C - 0.43521732*exp(d)))))

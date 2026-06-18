@@ -5,7 +5,7 @@ import torch
 
 def get_data(file_name):
     df = pd.read_csv(
-        f"../GP_regr/{file_name}.txt",
+        f"GP_regr/{file_name}.txt",
         sep=r"\s+",
         comment="%",
         header=None
