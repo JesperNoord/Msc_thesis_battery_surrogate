@@ -8,3 +8,5 @@ nn_model/__pycache__/fix_ecm.cpython-312.pyc
 nn_model/__pycache__/nn_model_lib.cpython-312.pyc
 nn_model/__pycache__/Ue_GP_comsol.cpython-312.pyc
 nn_model/__pycache__/Ue_GP_pybamm.cpython-312.pyc
+data_pybamm/__pycache__/*.pyc
+GP_regr/__pycache__/*.pyc
