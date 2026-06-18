@@ -17,6 +17,8 @@ from pathlib import Path
 # =================================================
 
 def get_SR_inds(RUN_ID):
+    '''Get the indices of the best and chosen models for a given run ID from the saved CSV files.'''
+
     df_best_inds = pd.read_csv("saved_sr_models/best_indices.csv")
     df_chosen_inds = pd.read_csv("saved_sr_models/chosen_indices.csv")
 
@@ -127,6 +129,7 @@ def get_units_dict():
 
 
 def extract_expressions(run_id, elements = ['R0', 'R1', 'C1', 'k', 'sdot', 'Ue']):
+    '''Extract the best expressions for each element from the saved CSV files.'''
     expressions = {}
     for elem in elements:
     
