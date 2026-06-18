@@ -76,7 +76,7 @@ elif HF_MODEL == 'pybamm': # Only for CC data
 USE_PULSE   = 'CC'   # 'pulse', 'CC', 'combo' (combo = both CC and pulse)
 
 
-# Configure networks, constraints
+# Configure networks, constraints and way of computing V and F
 CONFIG = {
     'R1_mode': 'net',   # 'net'
     'C1_mode': 'net',   # 'net'
