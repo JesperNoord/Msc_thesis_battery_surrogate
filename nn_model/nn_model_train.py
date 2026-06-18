@@ -73,7 +73,7 @@ elif HF_MODEL == 'pybamm': # Only for CC data
     PULSE_FILE  = os.path.join(DATA_DIR, 'polished_pulse/merged_pulse_hyper.txt')
     COMBO_FILE  = os.path.join(DATA_DIR, 'polished_combo/combo_half.txt')
 
-USE_PULSE   = 'CC'   # 'pulse', 'CC', 'combo' (combo = both CC and pulse)
+USE_PULSE   = 'combo'   # 'pulse', 'CC', 'combo' (combo = both CC and pulse)
 
 
 # Configure networks, constraints and way of computing V and F
@@ -99,17 +99,17 @@ CONFIG = {
     # ── style_V (V branch): 'static_no_R0' | 'static' | 'dynamic' ──
     # 'static_no_R0' : V = Ue − I·R1,                (algebraic, no R0)
     # 'dynamic'      : V = Ue − I·R0 − U1,           with U1 integrated by semi-implicit Euler
-    'style_V': 'static_no_R0',  # 'static_no_R0', 'dynamic', 'back_in_black' (Full black box model)
+    'style_V': 'dynamic',  # 'static_no_R0', 'dynamic', 'back_in_black' (Full black box model)
 
     # ── style_F (F branch): 'static' (algebraic sNet) | 'dynamic' ──
     # 'static':  s = sNet(soc, I_norm)              — no time integration, F is fully algebraic
     # 'dynamic': ds/dt = sdotNet(s, soc, I_norm, u) — Euler-rolled from s(0)=0
-    'style_F': 'static',  # 'static', 'dynamic'
+    'style_F': 'dynamic',  # 'static', 'dynamic'
 
     'HF_model': HF_MODEL,  # 'comsol' or 'pybamm'
 }
 
-EPOCHS  = 1  # Total training epochs
+EPOCHS  = 2500  # Total training epochs
 split_percentage = 1 # Out of 100% of the training data, how much to use (for quick tests)
 
 
