@@ -1,7 +1,0 @@
-8
-13
-0.0024684356
-sqrt((0.73008007 / (exp(d) ^ C)) + square(square(square(soc))))
-0.11840457677233937
-sqrt(soc**8 + 0.73008007/exp(d)**C)
-PySRFunction(X=>sqrt(soc**8 + 0.73008007/exp(d)**C))

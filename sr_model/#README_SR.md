@@ -17,10 +17,10 @@ This is the workflow used for SR:
     - The same `run_id` needs to be used for finding $U_{eq}(\mathrm{SOC})$. Finding expressions is done in (SR_run_Ue.ipynb)[SR_run_Ue.ipynb].
 ### Interpret the expressions and choose which to save (`interpret_expr.ipynb`). 
 - This is done in the [interpret_expr.ipynb](interpret_expr.ipynb) file
-	2. Start with specifying the `run_id` you want to look at. 
-	3. Compare the loss-to-complexity plot (Pareto frontier), and **save two** expressions. 
-		1. We saved a simpler and a more complex expression that were compared. 
-		2. **Saving** is done be writing the expressions' index in the [best_indices.csv](saved_sr_models/best_indices.csv) and [chosen_indices.csv](saved_sr_models/chosen_indices.csv) files, where the _best_ refer to the high complexity and the _chosen_ has lower complexity. 
+-  Start with specifying the `run_id` you want to look at. 
+- Compare the loss-to-complexity plot (Pareto frontier), and **save two** expressions. 
+	- We saved a simpler and a more complex expression that were compared. 
+	-  **Saving** is done be writing the expressions' index in the [best_indices.csv](saved_sr_models/best_indices.csv) and [chosen_indices.csv](saved_sr_models/chosen_indices.csv) files, where the **best** refer to the **high complexity** and the **chosen** has **lower complexity**. 
 ### Include the SR expressions in a full solver and solve for the observed/global outputs (`SR_global_outputs.ipynb`). 
 
 - This is done in [SR_global_outputs.ipynb](SR_global_outputs.ipynb)
@@ -29,6 +29,6 @@ This is the workflow used for SR:
 
     - It also offers the ability to simulate the global outputs with the NNs instead of the SR expressions. 
 
-- There are various plotting functions in this file. 
+- There are various plotting functions in this file. **For instance**, the extrapolation plot can be found here. 
 ### Examine the NN outputs in more detail.
  [plot_elements.ipynb](plot_elements.ipynb) also has various plotting options. For instance, a plot for comparing the NN predictions to the SR expressions. 

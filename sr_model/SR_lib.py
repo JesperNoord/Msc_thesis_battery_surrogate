@@ -211,11 +211,13 @@ def get_settings(elem):
         nest_const = {'exp':  {'exp': 1, 'log': 1},
                       'log':  {'exp': 1, 'log': 1}}
         op_comps = {"+": 1, "*": 1, '-': 1, '/': 1,'^':2, 'sqrt': 1, 'square':1, 'cube': 1,'exp': 1,'log': 2}
+    
     if elem == 'R1':
         un_ops = ['exp', 'log','sqrt','square', 'cube',]
         nest_const = {'exp':  {'exp': 1, 'log': 1},
                       'log':  {'exp': 1, 'log': 1}}
         op_comps = {"+": 1, "*": 1, '-': 1, '/': 1,'^':2, 'sqrt': 1, 'square':1, 'cube': 1,'exp': 1,'log': 2}
+    
     if elem == 'C1':
         un_ops = ['exp', 'log','sqrt','square', 'cube',]
         nest_const = {'exp':  {'exp': 1, 'log': 1},
@@ -243,6 +245,7 @@ def get_settings(elem):
                       'log':  {'sin': 0, 'cos': 0, 'tan': 0},
                       'exp':  {'sin': 0, 'cos': 0, 'tan': 0},
                       }
+        
         op_comps = {"+": 1, "*": 1, '-': 1, '/': 1,'^':2, 'sqrt': 1, 'square':1, 'cube': 1,'exp': 1,'log': 1, 'sin':3,'cos':3,'tan':3}
     
     var_names = get_var_names(elem)
